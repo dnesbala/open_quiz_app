@@ -13,17 +13,26 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Open Quiz',
-      theme: theme(),
-      home: BlocProvider<AuthenticationBloc>(
-        create: (context) => AuthenticationBloc(
-          authenticationRepository: AuthenticationRepositoryImpl(
-            authDataSource: AuthDataSourceImpl(),
-          ),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<AuthenticationBloc>(
+          create: (context) => AuthenticationBloc(
+              authenticationRepository: AuthenticationRepositoryImpl(
+                  authDataSource: AuthDataSourceImpl())),
         ),
-        child: LoginScreen(),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Open Quiz',
+        theme: theme(),
+        home: BlocProvider<AuthenticationBloc>(
+          create: (context) => AuthenticationBloc(
+            authenticationRepository: AuthenticationRepositoryImpl(
+              authDataSource: AuthDataSourceImpl(),
+            ),
+          ),
+          child: LoginScreen(),
+        ),
       ),
     );
   }
