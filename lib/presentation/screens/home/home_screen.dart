@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:open_quiz_app/presentation/bloc/authentication/authentication_bloc.dart';
-import 'package:open_quiz_app/presentation/screens/authentication/login_screen.dart';
+import 'package:open_quiz_app/presentation/screens/authentication/login_home_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);

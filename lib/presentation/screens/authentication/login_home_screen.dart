@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:open_quiz_app/config/app_theme.dart';
 import 'package:open_quiz_app/presentation/bloc/authentication/authentication_bloc.dart';
-import 'package:open_quiz_app/presentation/screens/home_screen.dart';
+import 'package:open_quiz_app/presentation/screens/authentication/login_guest_screen.dart';
+import 'package:open_quiz_app/presentation/screens/home/home_screen.dart';
 import 'package:open_quiz_app/presentation/widgets/custom_elevated_button.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -44,6 +46,7 @@ class LoginScreen extends StatelessWidget {
                       shadows: [
                         Shadow(color: Colors.black, blurRadius: 0.7),
                       ],
+                      color: AppTheme.secondaryTextColor,
                     ),
                   ),
                 ),
@@ -57,7 +60,10 @@ class LoginScreen extends StatelessWidget {
                   children: [
                     Text(
                       'Let\'s Play Quiz...',
-                      style: Theme.of(context).textTheme.headline5,
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline5!
+                          .copyWith(color: AppTheme.secondaryTextColor),
                     ),
                     SizedBox(height: 25),
                     CustomElevatedButton(
@@ -75,13 +81,22 @@ class LoginScreen extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       child: Text(
                         'OR',
-                        style: Theme.of(context).textTheme.headline6,
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline6!
+                            .copyWith(color: AppTheme.secondaryTextColor),
                       ),
                     ),
                     CustomElevatedButton(
-                      text: 'Sign In Anonymously',
+                      text: 'Sign In As Guest',
                       icon: Icons.login_rounded,
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => LoginGuestScreen(),
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),
